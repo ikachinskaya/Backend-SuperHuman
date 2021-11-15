@@ -1,8 +1,8 @@
 const express = require("express");
+const router = require("./routers");
 const app = express();
 
-//для работы с JSON файлами
-const bodyParser = express.json(); //data stream->JSON->JS объект->req.body
+const bodyParser = express.json();
 app.use(bodyParser);
-
+app.use("/api", router);
 module.exports = app;
