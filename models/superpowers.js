@@ -1,53 +1,45 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class SuperHuman extends Model {
+  class SuperPowers extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      SuperHuman.hasMany(models.SuperPowers, {
+      SuperPowers.belongsTo(models.SuperHuman, {
         foreignKey: "superHumanId",
       });
     }
   }
-  SuperHuman.init(
+  SuperPowers.init(
     {
-      nickName: {
+      nameSuperPowers: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "nick_name",
+        field: "name_super_powers",
         validate: {
           notNull: true,
           notEmpty: true,
         },
       },
-      realName: {
-        type: DataTypes.STRING,
+      superHumanId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        field: "real_name",
+        field: "super_human_id",
         validate: {
           notNull: true,
           notEmpty: true,
         },
-      },
-      originDescription: {
-        type: DataTypes.TEXT,
-        field: "origin_description",
-      },
-      catchPhrase: {
-        type: DataTypes.STRING,
-        field: "catch_phrase",
       },
     },
     {
       sequelize,
-      modelName: "SuperHuman",
-      tableName: "super_humans",
+      modelName: "SuperPowers",
       underscored: true,
+      tableName: "super_powers",
     }
   );
-  return SuperHuman;
+  return SuperPowers;
 };
