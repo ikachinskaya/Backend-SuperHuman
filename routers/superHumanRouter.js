@@ -1,6 +1,6 @@
 const superHumanRouter = require("express").Router();
 
-const SuperHumanController = require("../controllers/superHumanControllers");
+const SuperHumanController = require("../controllers/superHumanController");
 
 const { findSuperHuman } = require("../middlewares/superHumanMW");
 
